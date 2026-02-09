@@ -3,5 +3,7 @@ duckdb
 pandas
 matplotlib
 plotly
-prophet
+prophet==1.1.5
+
+
 
