@@ -138,17 +138,15 @@ elif page == "📈 Forecast Dashboard":
     
     @st.cache_data(ttl=3600)
     def get_ticket_volume_data():
-        # Aggregate daily ticket counts from your tickets table
+        # Use monthly data from executive pulse view
         query = """
         SELECT 
-            DATE_TRUNC('day', created_at) as date,
-            COUNT(*) as tickets_created
-        FROM tickets
-        GROUP BY DATE_TRUNC('day', created_at)
-        ORDER BY date
+            MAKE_DATE(year, month_number, 1) as date,
+            total_ticket_volume as tickets_created
+        FROM vw_kpi_executive_pulse
+        ORDER BY year, month_number
         """
-        return con.sql(query).df()
-    
+        return con.sql(query).df()    
     @st.cache_data(ttl=3600)
     def forecast_ticket_volume(forecast_days):
         df = get_ticket_volume_data()
@@ -373,4 +371,5 @@ elif page == "📈 Forecast Dashboard":
         
         For detailed model analysis, see the [Kaggle notebook](https://www.kaggle.com/code/doctorn8/time-series-service-desk-analytics).
         """)
+
 
