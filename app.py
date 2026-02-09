@@ -369,4 +369,8 @@ elif page == "📈 Forecast Dashboard":
         
         The models are trained on historical data from your DuckDB warehouse and provide:
         - Point forecasts (orange dashed line)
-        - 95%
+        - 95% confidence intervals (shaded area)
+        
+        For detailed model analysis, see the [Kaggle notebook](https://www.kaggle.com/code/doctorn8/time-series-service-desk-analytics).
+        """)
+
